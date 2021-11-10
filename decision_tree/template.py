@@ -1,30 +1,21 @@
 # <Document_Header Start>
-
 """
 filename : python_template.py # name of this file
-author : Adonay Pichardo # name of original engineer
-date : 09-MAR-2021 # date of original commit
 description :
-"Python Template for all *.py files originally authored for PantherDining" # description of what was written and summary of function(s), class(es), and object(s)
-maintainers :
-	Adonay Pichardo : 09-MAR-2021 # list of all maintainers and the dates they changed this file
+"Python Template for all *.py files originally authored for project" # description of what was written and summary of function(s), class(es), and object(s)
 """
 # <Document_Header End>
 
 # <Standard Imports Start>
 # List all imports alphabetically for Python3 standard libraries
-import os
 # <Standard Imports End>
 
-
 # <Internal Imports Start>
-# List all imports alphabetically for libraries authored for PantherDining
-import PD_json
+# List all imports alphabetically for libraries authored for project
 # <Internal Imports End>
 
 # <External Imports Start>
-# List all imports alphabetically for libraries NOT authored for PantherDining
-import numpy
+# List all imports alphabetically for libraries NOT authored for project
 # <External Imports End>
 
 # <Global Objects Start>
