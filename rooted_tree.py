@@ -39,23 +39,19 @@ def readParentChildrenPair():
     return line.rstrip().split(',')
 
 def printBFS(node):
-    # if node is None: return
+    if node is None: return
 
-    # queue = [node]
+    queue = [node]
 
-    # while queue:
-    #     node = queue.pop(0)
+    while queue:
+        node = queue.pop(0)
 
-    #     stdout.write(f'{node.data}\n')
+        stdout.write(f'{node.data}\n')
 
-    #     if len(node.children) > 0: queue.extend(node.children)
+        if len(node.children) > 0: queue.extend(node.children)
 
-    #     for every_child in node.children:
-    #         stdout.write(f'{every_child.data} ')
-
-    stdout.write(f'{node.data}\n')
-    stdout.write(f'{node.children[0].data}')
-    stdout.write(f'{node.children[1].data}')
+        for every_child in node.children:
+            stdout.write(f'{every_child.data} ')
 
 def main():
 
