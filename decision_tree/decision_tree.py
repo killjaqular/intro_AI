@@ -13,7 +13,17 @@ class DecisionTree:
         self.leaf = leaf
         self.bool = bool
         self.children = children
-        self.attriute = attribute
+        self.attribute = attribute
+
+    def __str__(self):
+        if self.leaf:
+            return f'{self.bool}\n'
+        else:
+            s = f'{self.attribute}\n'
+            for val in self.children.keys():
+                s += f'{val}:\n'
+                s += "\t" + str(self.children[val]).replace("\n", "\n\t")[:-1]
+            return s
 
     """
     Creates a DecisionTree for a leaf node
@@ -34,7 +44,7 @@ class DecisionTree:
     """
     @staticmethod
     def create_attribute_node(attribute, children):
-        return DicisionTree(attribute=attribute, children=children)
+        return DecisionTree(attribute=attribute, children=children)
 
     """
     Determines whether the current node is a leaf
