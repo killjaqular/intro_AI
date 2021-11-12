@@ -57,4 +57,43 @@ class TableRow():
 A table, which is a list of TableRows
 """
 class Table():
-    pass
+    """
+    Creates a new Table object (Should be private)
+
+    :param attributes: A list of all attribute names
+    :param rows: A list of all TableRow objects in the table
+    :return: A new Table object
+    """
+    def __init__(self, attributes, rows):
+        self.attributes = attributes
+        self.rows = rows
+
+    """
+    Creates a new Table object
+
+    :param attributes: A list of the names of the attributes
+    :param arr: A two dimensional array where each row has the attribute values and ends with the target
+    :return: A new Table object
+    """
+    @staticmethod
+    def create_table(attributes, arr):
+        rows = []
+        for a in arr:
+            rows.append(TableRow.create_row(attributes, a))
+        return Table(attributes, rows)
+
+    """
+    Gets a list of all the attributes in the table
+
+    :return: A list of strings that are the attribute names
+    """
+    def get_attributes(self):
+        return self.attributes
+
+    """
+    Gets a list of all the rows in the table
+
+    :return: A list of TableRows
+    """
+    def get_rows(self):
+        return self.rows
