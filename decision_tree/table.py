@@ -11,7 +11,7 @@ class TableRow():
     """
     def __init__(self, dict={}, target=False):
         self.dict = dict
-        self.value = value
+        self.target = target
 
     """
     Creates a new TableRow object
@@ -25,7 +25,7 @@ class TableRow():
         dict = {}
         for i in range(len(attributes)):
             dict[attributes[i]] = values[i]
-        return TableRow(dict=dict, target=values[-1])
+        return TableRow(dict=dict, target=(True if values[-1] == "T" else False))
 
     """
     Gets a list of attributes associated with the row
