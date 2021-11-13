@@ -36,6 +36,24 @@ class TableRow():
         return TableRow(dict=dict, target=(True if values[-1] == "T" else False))
 
     """
+    Creates a new table row by taking out a row from an old one
+
+    :param row: The old table row
+    :param attribute: The attribute value being considered
+    :return: A new TableRow object with the modifications
+    """
+    @staticmethod
+    def create_row_from_old(row, attribute):
+        # Copy over the values
+        dict = {}
+        for attr in row.get_attributes():
+            if attr != attribute:
+                dict[attr] = row.get_attribute_value(attr)
+        target = row.target
+
+        return TableRow(dict=dict, target=target)
+
+    """
     Gets a list of attributes associated with the row
 
     :return: A list object containing all the strings of attributes
@@ -70,11 +88,13 @@ class Table():
 
     :param attributes: A list of all attribute names
     :param rows: A list of all TableRow objects in the table
+    :param attr_vals: A dictionary that maps attribute names to sets of their values
     :return: A new Table object
     """
-    def __init__(self, attributes, rows):
+    def __init__(self, attributes, rows, attr_vals):
         self.attributes = attributes
         self.rows = rows
+        self.attr_vals = attr_vals
 
     def __str__(self):
         s = ""
@@ -97,7 +117,39 @@ class Table():
         rows = []
         for a in arr:
             rows.append(TableRow.create_row(attributes, a))
-        return Table(attributes, rows)
+
+        attr_vals = {}
+        for attr in attributes:
+            attr_vals[attr] = set()
+        for row in rows:
+            for attr in attributes:
+                attr_vals[attr].add(row.get_attribute_value(attr))
+
+        return Table(attributes, rows, attr_vals)
+
+    """
+    Creates a new Table from an old table that have a certain value of an attribute
+
+    :param table: The old table being modified
+    :param attribute: The attribute being taken out
+    :param value: The value of the attribute that will be taken
+    :return: A new Table object
+    """
+    @staticmethod
+    def new_table_from_old(table, attribute, value):
+        # Creating the new list of attributes
+        attributes = []
+        for attr in table.get_attributes():
+            if attr != attribute:
+                attributes.append(attr)
+
+        # Creating a new list of rows
+        rows = []
+        for row in table.get_rows():
+            if row.get_attribute_value(attribute) == value:
+                rows.append(TableRow.create_row_from_old(row, attribute))
+
+        return Table(attributes, rows, table.attr_vals)
 
     """
     Gets a list of all the attributes in the table
@@ -114,3 +166,50 @@ class Table():
     """
     def get_rows(self):
         return self.rows
+
+    """
+    Gets a set of all possible values of an attribute
+
+    :param attribute: String name of the attribute
+    :return: A set of all possible values for the attribute
+    """
+    def get_attribute_values(self, attribute):
+        return self.attr_vals[attribute]
+
+    """
+    Returns whether the table is empty
+
+    :return: True if the table is empty, false otherwise
+    """
+    def is_empty(self):
+        return len(self.get_rows()) == 0
+
+    """
+    Checks whether all rows have the same target value
+
+    :return: True if all rows have the same target, False otherwise
+    """
+    def all_target_same(self):
+        if self.is_empty():
+            return True
+        value = self.get_rows()[0].get_target()
+        for i in range(1, len(self.get_rows())):
+            if value != self.get_rows()[i].get_target():
+                return False
+        return True
+
+    """
+    Gets that mode of all target values
+
+    :return: Returns a boolean value that occurs the most in the rows
+    """
+    def get_target_mode(self):
+        trues = 0
+        falses = 0
+        for row in self.get_rows():
+            if row.target:
+                trues += 1
+            else:
+                falses += 1
+        # Defaults to False
+        return trues > falses

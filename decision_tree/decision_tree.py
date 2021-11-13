@@ -22,7 +22,7 @@ class DecisionTree:
             s = f'{self.attribute}\n'
             for val in self.children.keys():
                 s += f'{val}:\n'
-                s += "\t" + str(self.children[val]).replace("\n", "\n\t")[:-1]
+                s += "     " + str(self.children[val]).replace("\n", "\n     ")[:-5]
             return s
 
     """
