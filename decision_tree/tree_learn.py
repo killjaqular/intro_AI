@@ -13,10 +13,10 @@ def tree_learn(table, default=False):
         return DecisionTree.create_leaf(default)
     # Handles case where all targets are the same
     if table.all_target_same():
-        return table.get_rows()[0].get_target()
+        return DecisionTree.create_leaf(table.get_rows()[0].get_target())
     # Handles case where all attributes have been considered
     if len(table.get_attributes()) == 0:
-        return table.get_target_mode()
+        return DecisionTree.create_leaf(table.get_target_mode())
 
     best_attribute = choose_attribute(table)  # TODO: Create this function
     children = {}
