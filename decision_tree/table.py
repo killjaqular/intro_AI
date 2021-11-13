@@ -13,6 +13,14 @@ class TableRow():
         self.dict = dict
         self.target = target
 
+    def __str__(self):
+        s = ""
+        for attr in self.dict:
+            s += f'{self.dict[attr]:<10}'
+        s += "\n"
+        return s
+
+
     """
     Creates a new TableRow object
 
@@ -67,6 +75,15 @@ class Table():
     def __init__(self, attributes, rows):
         self.attributes = attributes
         self.rows = rows
+
+    def __str__(self):
+        s = ""
+        for attr in self.attributes:
+            s += f'{attr:<10}'
+        s += "\n"
+        for child in self.rows:
+            s += str(child)
+        return s
 
     """
     Creates a new Table object
