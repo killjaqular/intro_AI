@@ -1,49 +1,30 @@
-# <Document_Header Start>
 """
-filename : tree_inference.py
-author : Adonay Pichardo
-description :
-Inferencing from provided tree
+author :      Adonay Pichardo
+description : Inference of provided tree
 """
-# <Document_Header End>
 
-# <Standard Imports Start>
+# Standard Imports
 from sys import stdout
-# <Standard Imports End>
 
-# <Internal Imports Start>
-# <Internal Imports End>
-
-# <External Imports Start>
-# <External Imports End>
-
-# <Global Objects Start>
-# <Global Objects End>
-
-# <Classes Start>
-# <Classes End>
-
-# <Functions Start>
-def tree_inference(given_tree, given_list):
+def tree_inference(given_node, given_list):
     """
-    tree_inference: xxx
-    INPUT:          given_tree - tree, xxx
-                    given_list - list, xxx
-    OUTPUT:         True if xxx, else False
+    tree_inference: For every attribute in given_list, we descend the tree
+                    until a leaf given_node is reached in the Decision Tree.
+
+    INPUT:          given_node - DecisionTree, A Decision Tree.
+                    given_list - list,   The list of attributes to traverse through
+                    the Decision Tree.
+
+    OUTPUT:         The boolean stored in the Decision Tree when the leaf
+                    given_node is reached. True, or False.
     """
 
-    stdout.write(f'tree_inference() START\n')
-    stdout.write(f'given_tree\n{given_tree}\n')
-    stdout.write(f'given_list\n{given_list}\n')
+    if given_node.is_leaf():
+        return given_node.get_bool()
 
-    for every_attribute in given_list:
-        stdout.write(f'infering {every_attribute}\n')
+    current_node_attribute = given_node.get_attribute()
+    current_value          = given_list.get_attribute_value(current_node_attribute)
+    child_to_follow        = given_node.get_children()[current_value]
+    tree_inference(child_to_follow, given_list)
 
-    stdout.write(f'tree_inference() STOP \n\n')
-
-    return True
-# <Functions End>
-
-# <Main Start>
-# tree_inference should never be ran as a stand alone
-# <Main End>
+    return None

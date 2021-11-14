@@ -45,9 +45,27 @@ def main():
 
     table            = create_table(argv[1])
     tree             = tree_learn(table)
-    some_list        = []
-    inference_result = tree_inference(tree, some_list)
-    confusion_matrix = tree_validate(tree, table)
+
+    # Alt,Bar,Fri,Hun,Pat,Price,Rain,Res,Type,Est
+    # T,F,F,T,Some,$$$,F,T,French,0-10,T
+    test =\
+    {
+        'Alt'   : 'T',
+        'Bar'   : 'F',
+        'Fri'   : 'F',
+        'Hun'   : 'T',
+        'Pat'   : 'Some',
+        'Price' : '$$$',
+        'Rain'  : 'F',
+        'Res'   : 'T',
+        'Type'  : 'French',
+        'Est'   : '0-10'
+    }
+
+    for every_row in table.get_rows():
+        inference_result = tree_inference(tree, every_row)
+
+    # confusion_matrix = tree_validate(tree, table)
 # <Main End>
 
 if __name__ == '__main__':
