@@ -211,5 +211,23 @@ class Table():
                 trues += 1
             else:
                 falses += 1
-        # Defaults to False
-        return trues > falses
+        # Defaults to True
+        return trues >= falses
+
+    """
+    Counts the number of times that the target is true and false when an attribute is at a specified value
+
+    :param attribute: The attribute being examined
+    :param value: The attribute value being counted
+    :return: The number of trues and falses that occur
+    """
+    def count_vals(self, attribute, value):
+        trues = 0
+        falses = 0
+        for row in self.get_rows():
+            if row.get_attribute_value(attribute) == value:
+                if row.get_target():
+                    trues += 1
+                else:
+                    falses += 1
+        return trues, falses
