@@ -32,9 +32,15 @@ def tree_inference(given_tree, given_list):
     OUTPUT:         True if xxx, else False
     """
 
-    stdout.write(f'tree_inference({given_tree}, {given_list}) START\n')
+    stdout.write(f'tree_inference() START\n')
+    stdout.write(f'given_tree\n{given_tree}\n')
+    stdout.write(f'given_list\n{given_list}\n')
 
-    stdout.write(f'tree_inference({given_tree}, {given_list}) STOP \n')
+    for every_attribute in given_list:
+        stdout.write(f'infering {every_attribute}\n')
+
+    stdout.write(f'tree_inference() STOP \n\n')
+
     return True
 # <Functions End>
 

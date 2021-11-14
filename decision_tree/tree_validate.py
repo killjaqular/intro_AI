@@ -40,9 +40,11 @@ def tree_validate(given_tree, given_table):
 
     complete_confusion_matrix = ConfusionMatrix()
 
-    stdout.write(f'tree_validate({given_tree}, {given_table}) START\n')
+    stdout.write(f'tree_validate() START\n')
+    stdout.write(f'given_tree\n{given_tree}\n')
+    stdout.write(f'given_table\n{given_table}\n')
+    stdout.write(f'tree_validate() STOP \n\n')
 
-    stdout.write(f'tree_validate({given_tree}, {given_table}) STOP \n')
     return complete_confusion_matrix
 # <Functions End>
 

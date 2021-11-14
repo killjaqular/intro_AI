@@ -17,6 +17,8 @@ from sys import argv, stdout
 # <Internal Imports Start>
 # from create_table   import create_table
 # from tree_learn     import tree_learn
+from get_input      import get_input as create_table
+from tree_learn     import *
 from tree_inference import tree_inference
 from tree_validate  import tree_validate
 # <Internal Imports End>
@@ -31,7 +33,7 @@ from tree_validate  import tree_validate
 # <Classes End>
 
 # <Functions Start>
-def verify_argv():
+def verify_argv(argv):
     if len(argv) != 2:
         stdout.write(f'USAGE: user@host#_:> {argv[0]} <input_table>')
         exit()
@@ -39,14 +41,12 @@ def verify_argv():
 
 # <Main Start>
 def main():
-    input_table      = open(argv[1], 'r')
+    verify_argv(argv)
 
-    # table            = create_table()
-    # tree             = tree_learn(table)
-    table            = None
+    table            = create_table(argv[1])
+    tree             = tree_learn(table)
     some_list        = []
-    tree             = None
-    inference        = tree_inference(tree, some_list)
+    inference_result = tree_inference(tree, some_list)
     confusion_matrix = tree_validate(tree, table)
 # <Main End>
 
