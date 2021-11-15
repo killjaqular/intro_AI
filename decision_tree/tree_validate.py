@@ -11,19 +11,23 @@ class ConfusionMatrix:
         self.outter_list = [[0.0, 0.0], [0.0, 0.0]]
 
     def __str__(self):
-        stdout.write(f'  T | F\n')
-        stdout.write(f'T{self.outter_list[0][0]} | {self.outter_list[0][1]}\n')
-        stdout.write(f'F{self.outter_list[1][0]} | {self.outter_list[1][1]}\n')
-        stdout.write(f'  T | F\n')
+        string_representation = ''
+        string_representation += f'\nConfusion Matrix\n'
+        string_representation += f'╭--T-----F--╮\n'
+        string_representation += f'T {self.outter_list[0][0]} | {self.outter_list[0][1]} |\n'
+        string_representation += f'F {self.outter_list[1][0]} | {self.outter_list[1][1]} |\n'
+        string_representation += f'╰--T-----F--╯\n'
+        return string_representation
 
 def tree_validate(given_tree, given_table):
     """
     tree_validate: xxx
 
-    INPUT:         given_tree      - tree, xxx
-                   given_table     - table, xxx
+    INPUT:         given_tree  - tree,  Decision Tree to traverse.
+                   given_table - table, Table of original data.
 
-    OUTPUT:        ConfusionMatrix - ConfusionMatrix, xxx
+    OUTPUT:        complete_confusion_matrix - ConfusionMatrix, Contains the count of
+                                               True and False for each node in tree.
     """
 
     complete_confusion_matrix = ConfusionMatrix()

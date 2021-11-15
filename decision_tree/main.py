@@ -32,13 +32,19 @@ def main():
     stdout.write(f'Tree:\n')
     stdout.write(f'{tree}\n')
 
+    original_tree_inferences = []
+    stdout.write(f'\n<TREE INFERENCE>\n')
     for every_row in table.get_rows():
         stdout.write(f'Infering:\n')
         stdout.write(f'{every_row}\n')
         inference_result = tree_inference(tree, every_row)
+        original_tree_inferences.append(inference_result)
         stdout.write(f'{inference_result}\n')
 
-    # confusion_matrix = tree_validate(tree, table)
+    stdout.write(f'{original_tree_inferences}\n')
+
+    stdout.write(f'\n<TREE VALIDATION>\n')
+    confusion_matrix = tree_validate(tree, table)
 # <Main End>
 
 if __name__ == '__main__':
