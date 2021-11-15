@@ -21,19 +21,19 @@ class ConfusionMatrix:
         self.total_count = 0
 
     def __str__(self):
-        TT = self.matrix[(True,  True)]
-        TF = self.matrix[(True,  False)]
-        FT = self.matrix[(False, True)]
-        FF = self.matrix[(False, False)]
+        TT = self.matrix[(True,  True)]  / self.total_count
+        TF = self.matrix[(True,  False)] / self.total_count
+        FT = self.matrix[(False, True)]  / self.total_count
+        FF = self.matrix[(False, False)] / self.total_count
 
         string_representation = ''
         string_representation += f'\nConfusion Matrix\n'
         string_representation += f'KEY: (AT)Actual True,     (AF)Actual False\n'
         string_representation += f'KEY: (CT)Calculated True, (CF)Calculated False\n'
-        string_representation += f' ╭--AT----AF--╮\n'
-        string_representation += f'CT {TT:03} | {TF:03}  |\n'
-        string_representation += f'CF {FT:03} | {FF:03}  |\n'
-        string_representation += f' ╰--AT----AF--╯\n'
+        string_representation += f' ╭--AT-----AF--╮\n'
+        string_representation += f'CT {int(TT*100):03}% | {int(TF*100):03}% |\n'
+        string_representation += f'CF {int(FT*100):03}% | {int(FF*100):03}% |\n'
+        string_representation += f' ╰--AT-----AF--╯\n'
         return string_representation
 
     def record(self, entry):
@@ -41,7 +41,8 @@ class ConfusionMatrix:
 
 def tree_validate(tree, table):
     """
-    tree_validate: xxx
+    tree_validate: Infers an example on the given tree from the table, then creates
+                   a Confusion Matrix for measurement of Decision Tree efficiency.
 
     INPUT:         tree  - tree,  Decision Tree to traverse.
                    table - table, Table of original data.
