@@ -1,5 +1,5 @@
 """
-author :      Adonay Pichardo
+author      : Adonay Pichardo
 description : Validation of provided tree
 """
 
@@ -12,6 +12,12 @@ class ConfusionMatrix:
 
     def insert_new_list(self):
         self.outter_list.append(list())
+
+    def __str__(self):
+        stdout.write(f'  T | F\n')
+        stdout.write(f'T{self.outter_list[0][0]} | {self.outter_list[0][1]}\n')
+        stdout.write(f'F{self.outter_list[1][0]} | {self.outter_list[1][1]}\n')
+        stdout.write(f'  T | F\n')
 
 def tree_validate(given_tree, given_table):
     """
