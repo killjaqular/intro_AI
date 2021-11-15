@@ -8,10 +8,7 @@ from sys import stdout
 
 class ConfusionMatrix:
     def __init__(self):
-        self.outter_list = []
-
-    def insert_new_list(self):
-        self.outter_list.append(list())
+        self.outter_list = [[0.0, 0.0], [0.0, 0.0]]
 
     def __str__(self):
         stdout.write(f'  T | F\n')
