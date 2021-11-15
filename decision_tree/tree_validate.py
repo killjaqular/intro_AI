@@ -21,17 +21,19 @@ class ConfusionMatrix:
         self.total_count = 0
 
     def __str__(self):
-        TT = self.matrix[(True,  True)]  / self.total_count
-        TF = self.matrix[(True,  False)] / self.total_count
-        FT = self.matrix[(False, True)]  / self.total_count
-        FF = self.matrix[(False, False)] / self.total_count
+        TT = self.matrix[(True,  True)]
+        TF = self.matrix[(True,  False)]
+        FT = self.matrix[(False, True)]
+        FF = self.matrix[(False, False)]
 
         string_representation = ''
         string_representation += f'\nConfusion Matrix\n'
-        string_representation += f'╭--T-----F--╮\n'
-        string_representation += f'T {int(TT*100):02}% | {int(TF*100):02}% |\n'
-        string_representation += f'F {int(FT*100):02}% | {int(FF*100):02}% |\n'
-        string_representation += f'╰--T-----F--╯\n'
+        string_representation += f'KEY: (AT)Actual True,     (AF)Actual False\n'
+        string_representation += f'KEY: (CT)Calculated True, (CF)Calculated False\n'
+        string_representation += f' ╭--AT----AF--╮\n'
+        string_representation += f'CT {TT:03} | {TF:03}  |\n'
+        string_representation += f'CF {FT:03} | {FF:03}  |\n'
+        string_representation += f' ╰--AT----AF--╯\n'
         return string_representation
 
     def record(self, entry):
