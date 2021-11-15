@@ -236,3 +236,17 @@ class Table():
                 else:
                     falses += 1
         return trues, falses
+
+    """
+    Creates a new table by leaving out one row
+
+    :param row_num: The row number that we are leaving out
+    :return: The table with the row left out and the row being left out
+    """
+    def leave_one_out(self, row_num):
+        old_row = self.get_rows()[row_num]
+        new_row_list = []
+        for i in range(len(self.get_rows())):
+            if i != row_num:
+                new_row_list.append(self.get_rows()[i])
+        return Table(self.attributes, new_row_list, self.attr_vals), old_row
