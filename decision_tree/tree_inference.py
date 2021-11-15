@@ -20,11 +20,12 @@ def tree_inference(given_node, given_list):
     """
 
     if given_node.is_leaf():
-        return given_node.get_bool()
+        result = given_node.get_bool()
 
-    current_node_attribute = given_node.get_attribute()
-    current_value          = given_list.get_attribute_value(current_node_attribute)
-    child_to_follow        = given_node.get_children()[current_value]
-    tree_inference(child_to_follow, given_list)
+    else:
+        current_node_attribute = given_node.get_attribute()
+        current_value          = given_list.get_attribute_value(current_node_attribute)
+        child_to_follow        = given_node.get_children()[current_value]
+        result = tree_inference(child_to_follow, given_list)
 
-    return None
+    return result

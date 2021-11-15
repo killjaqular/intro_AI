@@ -29,8 +29,9 @@ def main():
 
     for every_row in table.get_rows():
         inference_result = tree_inference(tree, every_row)
+        stdout.write(f'{inference_result}\n')
 
-    confusion_matrix = tree_validate(tree, table)
+    # confusion_matrix = tree_validate(tree, table)
 # <Main End>
 
 if __name__ == '__main__':
