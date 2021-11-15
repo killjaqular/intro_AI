@@ -25,9 +25,16 @@ def main():
     verify_argv(argv)
 
     table = create_table(argv[1])
+    stdout.write(f'Table:\n')
+    stdout.write(f'{table}\n')
+
     tree  = tree_learn(table)
+    stdout.write(f'Tree:\n')
+    stdout.write(f'{tree}\n')
 
     for every_row in table.get_rows():
+        stdout.write(f'Infering:\n')
+        stdout.write(f'{every_row}\n')
         inference_result = tree_inference(tree, every_row)
         stdout.write(f'{inference_result}\n')
 
