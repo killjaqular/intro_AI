@@ -48,23 +48,12 @@ def tree_validate(tree, table, actuals):
                                                True and False for each node in tree.
     """
 
-    stdout.write(f'tree_validate() START\n')
-    stdout.write(f'tree\n{tree}\n')
-    stdout.write(f'table\n{table}\n')
-
     complete_confusion_matrix = ConfusionMatrix()
 
     for every_row in table.get_rows():
-        stdout.write(f'Infering:\n')
-        stdout.write(f'{every_row}\n')
         infered = tree_inference(tree, every_row)
         actual  = every_row.get_target()
-        stdout.write(f'infered: {infered}\n')
-        stdout.write(f'actual:  {actual}\n')
         complete_confusion_matrix.total_count += 1
         complete_confusion_matrix.matrix[(infered, actual)] += 1
-        stdout.write(f'IN MATRIX:_> {complete_confusion_matrix.matrix[(infered, actual)]}\n')
-
-    stdout.write(f'tree_validate() STOP \n\n')
 
     return complete_confusion_matrix
