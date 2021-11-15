@@ -1,4 +1,9 @@
 """
+author      : Ian Orzel
+description : ???
+"""
+
+"""
 A row of the table, representing a particular example
 """
 class TableRow():
