@@ -37,7 +37,7 @@ class ConfusionMatrix:
     def record(self, entry):
         self.matrix[entry] += 1
 
-def tree_validate(tree, table, actuals):
+def tree_validate(tree, table):
     """
     tree_validate: xxx
 
