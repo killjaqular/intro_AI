@@ -24,14 +24,17 @@ def verify_argv(argv):
 def main():
     verify_argv(argv)
 
+    # Creates a table using the input file from the arguments
     table = create_table(argv[1])
     stdout.write(f'Table:\n')
     stdout.write(f'{table}\n')
 
+    # Generates a decision tree using the tree learning algorithm
     tree  = tree_learn(table)
     stdout.write(f'Tree:\n')
     stdout.write(f'{tree}\n')
 
+    # Runs tree inference on every row of the table
     stdout.write(f'\n<TREE INFERENCE>\n')
     for every_row in table.get_rows():
         stdout.write(f'Infering:\n')
@@ -39,6 +42,7 @@ def main():
         inference_result = tree_inference(tree, every_row)
         stdout.write(f'{inference_result}\n')
 
+    # Runs tree validation on the entire input table
     stdout.write(f'\n<TREE VALIDATION>\n')
     confusion_matrix = tree_validate(tree, table)
     stdout.write(f'{confusion_matrix}')
