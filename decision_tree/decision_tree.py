@@ -1,6 +1,6 @@
 """
 author      : Ian Orzel
-description : ???
+description : Implements a data structure for storing a decision tree
 """
 
 class DecisionTree:

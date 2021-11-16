@@ -1,6 +1,6 @@
 """
 author      : Ian Orzel
-description : ???
+description : Implements classes to represent tables and rows of tables
 """
 
 """

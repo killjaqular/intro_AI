@@ -1,3 +1,8 @@
+"""
+author      : Ian Orzel
+description : Implements the tree learning algorithm from the book
+"""
+
 from decision_tree import DecisionTree
 from table import Table
 
